@@ -1,0 +1,36 @@
+.scrollable-view {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 100;
+}
+/* Scrollbar styling */
+.scrollable-view::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-view::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-view::-webkit-scrollbar-thumb {
+  background: var(--button-border-color);
+  border-radius: 4px;
+}
+
+.scrollable-view::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .scrollable-view {
+    height: auto;
+    padding: 15px;
+  }
+}

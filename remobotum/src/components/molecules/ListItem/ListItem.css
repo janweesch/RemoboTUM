@@ -1,0 +1,27 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  transition: 0.2s;
+}
+
+.list-item:hover{
+    border-color: var(--color-primary-light);
+    background-color: transparent;
+}
+
+.sequence-number{
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    color: var(--color-primary);
+}
+
+.item-name {
+  font-size: var(--button-font-size);
+  color: var(--button-text-colour);
+}
+

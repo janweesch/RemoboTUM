@@ -1,0 +1,28 @@
+.voice-playback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 50px;
+}
+
+.voice-bar {
+  width: 4px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+.voice-playback.playing .voice-bar {
+  animation: voice-wave 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes voice-wave {
+  from {
+    transform: scaleY(0.4);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}

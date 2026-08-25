@@ -1,0 +1,43 @@
+.button {
+  background-color: var(--button-bg);
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  color: var(--button-text-color);
+  cursor: var(--button-cursor);
+}
+
+.button:hover
+{
+  background-color: var(--button-bg);
+  border-color: var(--color-primary-light);
+}
+
+/* Position variants */
+.button-relative{
+  position: relative;
+  z-index: 999;
+}
+
+.button-top-right-fixed {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+
+.button-bottom-left-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+.button-bottom-right-fixed {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;
+}

@@ -1,0 +1,10 @@
+.page-header {
+  display: flex;
+  width: 100%;
+  min-height: 68px;
+  box-sizing: border-box;
+  border-bottom: var(--button-border-width) solid var(--button-border-color);
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}

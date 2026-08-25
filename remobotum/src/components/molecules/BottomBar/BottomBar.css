@@ -1,0 +1,9 @@
+.bottom-bar {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+  border-top: var(--button-border-width) solid var(--button-border-color);
+}

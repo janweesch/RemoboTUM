@@ -1,0 +1,68 @@
+/* Shared Icon Button */
+.icon-button {
+  background-color: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+/* Position variants */
+.icon-button-relative{
+  position: relative;
+  z-index: 999;
+}
+
+.icon-button-top-right-fixed {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+
+.icon-button-top-left-fixed {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+.icon-button-top-right-sticky
+{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+}
+
+.icon-button-top-middle-fixed {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.icon-button-bottom-middle-fixed{
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.icon-button-top-middle-fixed:hover, .icon-button-bottom-middle-fixed:hover{
+  transform: translateX(-50%) scale(1.1);
+}
+
+.icon-button-top-middle-fixed:active, .icon-button-bottom-middle-fixed:active {
+  transform: translateX(-50%) scale(0.95);
+}
+

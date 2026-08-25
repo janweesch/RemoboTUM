@@ -1,0 +1,110 @@
+:root {
+  /* Color Palette */
+  --color-primary: #3d4651;
+  --color-primary-light: #5a6270;
+  --color-background: #fffafa;
+  --color-text: #3d4651;
+  --color-text-secondary: #6b7280;
+  
+  /* Component: Button */
+  --button-bg: transparent;
+  --button-border-color: var(--color-primary);
+  --button-border-width: 2px;
+  --button-border-radius: 6px;
+  --button-padding: 10px 20px;
+  --button-font-size: 16px;
+  --button-font-weight: 500;
+  --button-text-color: var(--color-text);
+  --button-cursor: pointer;
+  
+  /* Component: Switch */
+  --switch-bg-off: #ef4444;
+  --switch-bg-on: #06D6A0;
+  --switch-width: 100px;
+  --switch-height: 50px;
+  --switch-border-radius: 100px;
+  --switch-slider-size: 45px;
+  --switch-slider-bg: #ffffff;
+  --switch-transition: 0.2s;
+  --switch-font-size: 16px;
+  --switch-label-color: var(--color-text);
+  --switch-gap: 15px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #9ca3af;
+    --color-background: #16171d;
+    --color-text: #f3f4f6;
+    --color-text-secondary: #d1d5db;
+    
+    --button-border-color: var(--color-primary);
+    --button-text-color: var(--color-text);
+    
+    --switch-bg-off: #7f1d1d;
+    --switch-bg-on: #059669;
+    --switch-slider-bg: #f3f4f6;
+    --switch-label-color: var(--color-text);
+  }
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}

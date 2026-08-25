@@ -1,0 +1,59 @@
+.add-speech-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  z-index: 2000;
+}
+
+.add-speech-dialog {
+  width: min(90%, 500px);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+
+  padding: 25px;
+
+  background-color: var(--color-background);
+
+  border: var(--button-border-width)
+    solid var(--button-border-color);
+
+  border-radius: var(--button-border-radius);
+}
+
+.add-speech-dialog input,
+.add-speech-dialog textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  font-size: 16px;
+
+  border: var(--button-border-width)
+    solid var(--button-border-color);
+
+  border-radius: var(--button-border-radius);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.add-speech-dialog textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.add-speech-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
