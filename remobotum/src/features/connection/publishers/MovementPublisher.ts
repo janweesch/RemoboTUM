@@ -8,6 +8,7 @@ addToQueue(movementId: number) {
 WebSocket.send(
   JSON.stringify({
     type: "movement",
+    action: "add",
     actionId: movementId
   })
 );

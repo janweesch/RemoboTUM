@@ -13,6 +13,7 @@ import SearchBar from '../../components/molecules/SearchBar/SearchBar';
 import { type RobotAction } from '../../features/connection/listeners/MovementListener';
 import MessageRouter from '../../features/connection/messaging/MessageRouter';
 import MovementPublisher from '../../features/connection/publishers/MovementPublisher';
+import QueuePublisher from '../../features/connection/publishers/QueuePublisher';
 
 
 interface Movement {
@@ -65,7 +66,11 @@ export default function MovementsPage(): JSX.Element
 
   const handleMovementClick = (movement: Movement) => {MovementPublisher.addToQueue(movement.id)}
 
-  const handleDeleteQueueItem = (id: number) => {setQueueItems(prev => prev.filter(item => item.queueId !== id));};
+  useEffect(() => {MessageRouter.queue.onQueue((items) => {setQueueItems(items);});
+  
+  return () => {MessageRouter.queue.removeListener();};}, []);
+
+  const handleDeleteQueueItem = (queueId: string) => {QueuePublisher.deleteFromQueue(queueId);};
 
   useEffect(() => {MessageRouter.movements.onMovements((actions) => {setMovements(actions);});
 

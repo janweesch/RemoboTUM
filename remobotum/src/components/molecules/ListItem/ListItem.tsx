@@ -3,10 +3,10 @@ import { CancelButton } from "../../atoms/IconButton/IconButton";
 import './ListItem.css'
 
 interface ListItemProps{
-    id: number;
+    id: string;
     sequencenumber: number;
     name: string;
-    onDelete: (id:number) => void 
+    onDelete: (id:string) => void 
 }
 
 export default function ListItem({id, sequencenumber, name, onDelete}:ListItemProps): JSX.Element{

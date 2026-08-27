@@ -9,7 +9,7 @@ import SearchBar from "../../../../components/molecules/SearchBar/SearchBar";
 
 
 export interface QueueItem {
-  queueId: number;
+  queueId: string;
   movementId: number;
   name: string;
 }
@@ -17,7 +17,7 @@ export interface QueueItem {
 interface QueueListProps {
   items: QueueItem[];
   onClose: () => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function QueueList({items, onClose, onDelete}: QueueListProps): JSX.Element {
