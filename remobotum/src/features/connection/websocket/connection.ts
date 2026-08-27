@@ -1,8 +1,8 @@
-import { BatteryHandler } from "./listeners/BatteryListener";
-
 const ROBOT_WS_URL = "ws://192.168.123.164:8000";
 
-class RobotConnection {
+type MessageHandler = (message: string) => void;
+
+class Connection {
 
   private socket: WebSocket | null = null;
 
@@ -10,7 +10,18 @@ class RobotConnection {
 
   private shouldReconnect = true;
 
-  public battery = new BatteryHandler();
+  private messageHandler: MessageHandler | null = null;
+
+
+  // --------------------------------------------------
+  // MESSAGE HANDLER
+  // --------------------------------------------------
+
+  setMessageHandler(handler: MessageHandler) {
+
+    this.messageHandler = handler;
+
+  }
 
 
   // --------------------------------------------------
@@ -19,7 +30,6 @@ class RobotConnection {
 
   connect() {
 
-    // Don't create another connection if one already exists
     if (
       this.socket &&
       (
@@ -37,62 +47,34 @@ class RobotConnection {
     this.socket = new WebSocket(ROBOT_WS_URL);
 
 
-    // --------------------------------------------------
-    // CONNECTION SUCCESSFUL
-    // --------------------------------------------------
-
     this.socket.onopen = () => {
 
       console.log("Connected to robot");
 
-      // Cancel a pending reconnect attempt
       if (this.reconnectTimer !== null) {
 
         window.clearTimeout(this.reconnectTimer);
 
         this.reconnectTimer = null;
+
       }
+
     };
 
 
     // --------------------------------------------------
-    // MESSAGE RECEIVED
+    // MESSAGE
     // --------------------------------------------------
 
     this.socket.onmessage = (event) => {
 
-      console.log("Received from robot:", event.data);
+      console.log(
+        "Received from robot:",
+        event.data
+      );
 
-      try {
+      this.messageHandler?.(event.data);
 
-        const message = JSON.parse(event.data);
-
-        switch (message.type) {
-
-          case "battery":
-
-            this.battery.handle(message.percentage);
-
-            break;
-
-
-          default:
-
-            console.log(
-              "Unknown message type:",
-              message.type
-            );
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Failed to parse WebSocket message:",
-          error
-        );
-
-      }
     };
 
 
@@ -111,7 +93,7 @@ class RobotConnection {
 
 
     // --------------------------------------------------
-    // CONNECTION CLOSED
+    // CLOSE
     // --------------------------------------------------
 
     this.socket.onclose = () => {
@@ -125,7 +107,9 @@ class RobotConnection {
         this.scheduleReconnect();
 
       }
+
     };
+
   }
 
 
@@ -135,9 +119,10 @@ class RobotConnection {
 
   private scheduleReconnect() {
 
-    // Don't create multiple reconnect timers
     if (this.reconnectTimer !== null) {
+
       return;
+
     }
 
     console.log(
@@ -151,11 +136,12 @@ class RobotConnection {
       this.connect();
 
     }, 3000);
+
   }
 
 
   // --------------------------------------------------
-  // SEND MESSAGE
+  // SEND
   // --------------------------------------------------
 
   send(message: string) {
@@ -179,6 +165,7 @@ class RobotConnection {
       );
 
     }
+
   }
 
 
@@ -192,11 +179,9 @@ class RobotConnection {
       "Disconnecting from robot..."
     );
 
-    // Don't reconnect after intentional disconnect
     this.shouldReconnect = false;
 
 
-    // Cancel pending reconnect
     if (this.reconnectTimer !== null) {
 
       window.clearTimeout(
@@ -204,18 +189,21 @@ class RobotConnection {
       );
 
       this.reconnectTimer = null;
+
     }
 
 
-    // Close WebSocket
     if (this.socket) {
 
       this.socket.close();
 
       this.socket = null;
+
     }
+
   }
+
 }
 
 
-export default new RobotConnection();
+export default new Connection();
