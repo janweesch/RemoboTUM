@@ -1,8 +1,10 @@
 import BatteryListener from "../listeners/BatteryListener";
+import { MovementListener } from "../listeners/MovementListener";
 
 class MessageRouter {
 
-  private battery = new BatteryListener();
+  public battery = new BatteryListener();
+  public movements = new MovementListener();
 
 
   handle(rawMessage: string) {
@@ -15,12 +17,15 @@ class MessageRouter {
 
         case "battery":
 
-          this.battery.handle(
-            message.percentage
-          );
+          this.battery.handle(message.percentage);
 
           break;
 
+        case "movements":
+          
+          this.movements.handle(message.actions);
+
+          break;
 
         default:
 
@@ -41,14 +46,6 @@ class MessageRouter {
     }
 
   }
-
-
-  getBattery() {
-
-    return this.battery;
-
-  }
-
 }
 
 

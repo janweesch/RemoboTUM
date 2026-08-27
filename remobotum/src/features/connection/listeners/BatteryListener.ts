@@ -1,6 +1,4 @@
-export type BatteryListenerCallback =
-  (percentage: number) => void;
-
+export type BatteryListenerCallback =(percentage: number) => void;
 
 class BatteryListener {
 

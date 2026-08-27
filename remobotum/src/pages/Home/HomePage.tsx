@@ -33,9 +33,9 @@ export default function HomePage(): JSX.Element {
 
   const handleCancelFollowMe = () => {setIsConfirmOpen(false);};
   
-  useEffect(() => {messagerouter.getBattery().onBattery((percentage) => {setBattery(percentage);});
+  useEffect(() => {messagerouter.battery.onBattery((percentage) => {setBattery(percentage);});
 
-  return () => {messagerouter.getBattery().removeListener();};
+  return () => {messagerouter.battery.removeListener();};
 
   }, []);
 
