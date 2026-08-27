@@ -1,4 +1,4 @@
-import {type JSX, useState} from "react"
+import {type JSX, useState, useEffect} from "react"
 import Switch from "../../components/atoms/Switch/Switch";
 import {SettingsButton}  from "../../components/atoms/IconButton/IconButton";
 import { ButtonContainer } from "../../components/molecules/ButtonContainer/ButtonContainer";
@@ -9,6 +9,7 @@ import './HomePage.css';
 import ConfirmationDialog from "../../components/molecules/ConfirmationDialog/ConfirmationDialog";
 import ProgressBar from "../../components/atoms/ProgressBar/ProgressBar";
 import PageHeader from "../../components/molecules/PageHeader/PageHeader";
+import robotconnection from "../../features/connection/websocket/robotconnection";
 
 
 
@@ -33,6 +34,14 @@ export default function HomePage(): JSX.Element {
   const handleConfirmFollowMe = () => {setValue(prev => !prev); setIsConfirmOpen(false);};
 
   const handleCancelFollowMe = () => {setIsConfirmOpen(false);};
+  
+  useEffect(() => {robotconnection.battery.onBattery((percentage) => {setBattery(percentage);});
+
+  return () => {
+    robotconnection.battery.removeListener();
+  };
+
+}, []);
 
   return (
     <div className="home-page-wrapper">
@@ -49,9 +58,9 @@ export default function HomePage(): JSX.Element {
           <Button label="Remote Control" onClick={() => navigate('/remote-control')}/>
           <Switch isOn={value} onChange={handleFollowMeChange} label="Follow Me"/>
         </ButtonContainer>
-        
-        <ConfirmationDialog isOpen={isConfirmOpen} title="Enable Follow Me?" message="Are you sure you want to enable Follow Me?" onCancel={handleCancelFollowMe} onConfirm={handleConfirmFollowMe}/>
       </div>
+
+      <ConfirmationDialog isOpen={isConfirmOpen} title="Enable Follow Me?" message="Are you sure you want to enable Follow Me?" onCancel={handleCancelFollowMe} onConfirm={handleConfirmFollowMe}/>
     </div>
   );
 }

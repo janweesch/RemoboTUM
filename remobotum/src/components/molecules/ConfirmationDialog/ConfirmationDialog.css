@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000
 }
 
 .confirmation-dialog {
@@ -15,7 +16,7 @@
   border: var(--button-border-width) solid var(--button-border-color);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  
+  ;
 }
 
 .confirmation-dialog h2 {
