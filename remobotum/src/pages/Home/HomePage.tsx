@@ -9,9 +9,7 @@ import './HomePage.css';
 import ConfirmationDialog from "../../components/molecules/ConfirmationDialog/ConfirmationDialog";
 import ProgressBar from "../../components/atoms/ProgressBar/ProgressBar";
 import PageHeader from "../../components/molecules/PageHeader/PageHeader";
-import messagerouter from "../../features/connection/messaging/messagerouter";
-
-
+import messagerouter from "../../features/connection/messaging/MessageRouter";
 
 export default function HomePage(): JSX.Element {
   

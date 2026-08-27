@@ -3,8 +3,8 @@ import HomePage from './pages/Home/HomePage';
 import MovementsPage from './pages/Movements/MovementsPage';
 import SettingsPage from './pages/Settings/SettingsPage';
 import ConversationPage from './pages/Conversation/ConversationPage'
-import connection from './features/connection/websocket/connection';
-import messagerouter from './features/connection/messaging/messagerouter';
+import connection from './features/connection/websocket/WebSocket';
+import messagerouter from './features/connection/messaging/MessageRouter';
 import { useEffect } from 'react';
 
 
