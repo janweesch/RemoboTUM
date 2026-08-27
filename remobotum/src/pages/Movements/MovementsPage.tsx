@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from '../../components/molecules/SearchBar/SearchBar';
 import { type RobotAction } from '../../features/connection/listeners/MovementListener';
 import MessageRouter from '../../features/connection/messaging/MessageRouter';
+import MovementPublisher from '../../features/connection/publishers/MovementPublisher';
 
 
 interface Movement {
@@ -62,8 +63,7 @@ export default function MovementsPage(): JSX.Element
 
   const filteredMovements = movements.filter(movement => movement.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  let nextQueueId = 0;
-  const handleMovementClick = (movement: Movement) => {setQueueItems(prev => [...prev,{queueId: nextQueueId++, movementId: movement.id, name: movement.name}]);};
+  const handleMovementClick = (movement: Movement) => {MovementPublisher.addToQueue(movement.id)}
 
   const handleDeleteQueueItem = (id: number) => {setQueueItems(prev => prev.filter(item => item.queueId !== id));};
 
