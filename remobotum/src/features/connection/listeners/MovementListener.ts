@@ -1,6 +1,7 @@
 export interface RobotAction{
-    id: number;
+    id: number | null;
     name: string;
+    kind: "preset" | "custom";
 }
 
 export type MovementListenerCallback = (actions: RobotAction[]) => void;

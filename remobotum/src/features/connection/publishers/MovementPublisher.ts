@@ -1,15 +1,20 @@
+import type { RobotAction } from "../listeners/MovementListener";
 import WebSocket from "../websocket/WebSocket";
 
 class MovementPublisher {
 
-  addToQueue(movementId: number) {
+  addToQueue(movement: RobotAction) {
 
 
     WebSocket.send(
       JSON.stringify({
         type: "queue",
         action: "add",
-        actionId: movementId
+        movement:{
+          id: movement.id,
+          name: movement.name,
+          kind: movement.kind,
+        }
       })
     );
 

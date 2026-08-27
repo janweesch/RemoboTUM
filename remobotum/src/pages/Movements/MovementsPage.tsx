@@ -16,10 +16,6 @@ import MovementPublisher from '../../features/connection/publishers/MovementPubl
 import QueuePublisher from '../../features/connection/publishers/QueuePublisher';
 
 
-interface Movement {
-  id: number;
-  name: string;
-}
 
 // const MOVEMENTS: Movement[] = [
 //   { id: 1, name: 'A' },
@@ -64,7 +60,7 @@ export default function MovementsPage(): JSX.Element
 
   const filteredMovements = movements.filter(movement => movement.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  const handleMovementClick = (movement: Movement) => {MovementPublisher.addToQueue(movement.id)}
+  const handleMovementClick = (movement: RobotAction) => {MovementPublisher.addToQueue(movement)}
 
   useEffect(() => {
 
