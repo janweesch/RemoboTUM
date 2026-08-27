@@ -66,11 +66,23 @@ export default function MovementsPage(): JSX.Element
 
   const handleMovementClick = (movement: Movement) => {MovementPublisher.addToQueue(movement.id)}
 
-  useEffect(() => {MessageRouter.queue.onQueue((items) => {setQueueItems(items);});
-  
-  return () => {MessageRouter.queue.removeListener();};}, []);
+  useEffect(() => {
+
+    MessageRouter.movements.onMovements((actions) => {
+        setMovements(actions);
+    });
+
+    MovementPublisher.getMovements();
+
+    return () => {
+        MessageRouter.movements.removeListener();
+    };
+
+}, []);
 
   const handleDeleteQueueItem = (queueId: string) => {QueuePublisher.deleteFromQueue(queueId);};
+
+  MovementPublisher.getMovements();
 
   useEffect(() => {MessageRouter.movements.onMovements((actions) => {setMovements(actions);});
 
