@@ -62,9 +62,10 @@ export default function MovementsPage(): JSX.Element
 
   const filteredMovements = movements.filter(movement => movement.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  const handleMovementClick = (movement: Movement) => {setQueueItems(prev => [...prev,{id: movement.id, name: movement.name}]);};
+  let nextQueueId = 0;
+  const handleMovementClick = (movement: Movement) => {setQueueItems(prev => [...prev,{queueId: nextQueueId++, movementId: movement.id, name: movement.name}]);};
 
-  const handleDeleteQueueItem = (id: number) => {setQueueItems(prev => prev.filter(item => item.id !== id));};
+  const handleDeleteQueueItem = (id: number) => {setQueueItems(prev => prev.filter(item => item.queueId !== id));};
 
   useEffect(() => {MessageRouter.movements.onMovements((actions) => {setMovements(actions);});
 

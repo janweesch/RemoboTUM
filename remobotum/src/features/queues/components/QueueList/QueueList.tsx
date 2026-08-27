@@ -7,8 +7,10 @@ import PageHeader from "../../../../components/molecules/PageHeader/PageHeader";
 import BottomBar from "../../../../components/molecules/BottomBar/BottomBar";
 import SearchBar from "../../../../components/molecules/SearchBar/SearchBar";
 
+
 export interface QueueItem {
-  id: number;
+  queueId: number;
+  movementId: number;
   name: string;
 }
 
@@ -43,7 +45,7 @@ export default function QueueList({items, onClose, onDelete}: QueueListProps): J
               </PageHeader>
             )}
 
-      <ScrollableView gap={10}>{filtereditems.map((item, index) => (<ListItem key={item.id} id={item.id} sequencenumber={index + 1} name={item.name}onDelete={onDelete}/> ))} </ScrollableView>
+      <ScrollableView gap={10}>{filtereditems.map((item, index) => (<ListItem key={item.queueId} id={item.queueId} sequencenumber={index + 1} name={item.name}onDelete={onDelete}/> ))} </ScrollableView>
       
       <BottomBar>
         <PopDownButton onClick={onClose}/>
