@@ -9,7 +9,7 @@ import './HomePage.css';
 import ConfirmationDialog from "../../components/molecules/ConfirmationDialog/ConfirmationDialog";
 import ProgressBar from "../../components/atoms/ProgressBar/ProgressBar";
 import PageHeader from "../../components/molecules/PageHeader/PageHeader";
-import robotconnection from "../../features/connection/websocket/robotconnection";
+import messagerouter from "../../features/connection/messaging/messagerouter";
 
 
 
@@ -35,13 +35,11 @@ export default function HomePage(): JSX.Element {
 
   const handleCancelFollowMe = () => {setIsConfirmOpen(false);};
   
-  useEffect(() => {robotconnection.battery.onBattery((percentage) => {setBattery(percentage);});
+  useEffect(() => {messagerouter.getBattery().onBattery((percentage) => {setBattery(percentage);});
 
-  return () => {
-    robotconnection.battery.removeListener();
-  };
+  return () => {messagerouter.getBattery().removeListener();};
 
-}, []);
+  }, []);
 
   return (
     <div className="home-page-wrapper">
