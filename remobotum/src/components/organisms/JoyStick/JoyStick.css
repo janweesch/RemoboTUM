@@ -1,0 +1,29 @@
+.joystick {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #222;
+
+    position: relative;
+
+    touch-action: none;
+    user-select: none;
+}
+
+.joystick-knob {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+    background: #666;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    margin-left: -35px;
+    margin-top: -35px;
+
+    pointer-events: none;
+}

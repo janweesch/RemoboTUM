@@ -1,58 +1,108 @@
-import "./ConversationPage.css"
-import { type JSX, useState } from 'react';
-import { PopUpButton, BackButton, SettingsButton } from '../../components/atoms/IconButton/IconButton';
-import { Button } from '../../components/atoms/Button/Button';
-import PageHeader from '../../components/molecules/PageHeader/PageHeader';
-import BottomBar from '../../components/molecules/BottomBar/BottomBar';
-import { useNavigate } from "react-router-dom";
+import "./ConversationPage.css";
+import { type JSX, useState } from "react";
+
+import {
+    BackButton,
+    SettingsButton
+} from "../../components/atoms/IconButton/IconButton";
+
+import { Button } from "../../components/atoms/Button/Button";
+import PageHeader from "../../components/molecules/PageHeader/PageHeader";
+import BottomBar from "../../components/molecules/BottomBar/BottomBar";
+
+import BottomSheet from "../../components/organisms/BottomSheet/BottomSheet";
 import ConversationInterface from "../../components/organisms/ConversationInterface/ConversationInterface";
 import AddSpeechDialog from "../../components/organisms/AddSpeechDialog/AddSpeechDialog";
+import SpeechSelectionView from "../../components/organisms/SpeechSelectionView/SpeechSelectionView";
 
-export default function ConversationPage(): JSX.Element
-{
-  const navigate = useNavigate();
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
+import { useNavigate } from "react-router-dom";
 
-  const handlePlay = () => {
-  setIsPlaying(true);
+import SpeechPublisher from "../../features/connection/publishers/SpeechPublisher";
+import type { Speech } from "../../features/connection/listeners/SpeechListener";
+
+
+export default function ConversationPage(): JSX.Element {
+
+    const navigate = useNavigate();
+    const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const [selectedSpeech, setSelectedSpeech] = useState<Speech | null>(null);
+    const [isSelectOpen, setIsSelectOpen] = useState(false);
+
+    const handlePlay = () => {
+
+    if (!selectedSpeech) {
+        return;
+    }
+
+    SpeechPublisher.playSpeech(selectedSpeech.id);
+    setIsPlaying(true);
   };
 
-  const handlePause = () => {
-    setIsPlaying(false);
+    const handlePause = () => {
+        SpeechPublisher.pauseSpeech();
+        setIsPlaying(false);
   };
 
-  const handleStop = () => {
-    setIsPlaying(false);
+    const handleStop = () => {
+        SpeechPublisher.stopSpeech();
+        setIsPlaying(false);
   };
 
-  return (
-    <div className="conversation-page-wrapper">
-        <PageHeader>
-            <BackButton position="top-left-fixed" onClick={() => navigate('/')} />
-            <SettingsButton position="top-right-fixed" onClick={() => navigate("/settings")} />
-        </PageHeader>
+    // --------------------------------------------------
+    // ADD SPEECH
+    // --------------------------------------------------
 
-        <ConversationInterface isPlaying={isPlaying} onPlay={handlePlay} onPause={handlePause} onStop={handleStop}/>
-      
-        <BottomBar>
-          <Button label="Add" position="bottom-left-fixed" onClick={()=> setIsAddDialogOpen(true)}/>
-          <PopUpButton onClick={()=>setIsSheetOpen(true)}/>
-          <Button label="Select" position="bottom-right-fixed" onClick={()=>navigate('')}/>
-        </BottomBar>
+    const handleSaveSpeech = (
+        title: string,
+        text: string
+    ) => {
 
-        <AddSpeechDialog 
-        isOpen={isAddDialogOpen} 
-        onCancel={() => setIsAddDialogOpen(false)} 
-        onSave={(title, text) => {console.log("Title:", title);
-        console.log("Text:", text); 
-        setIsAddDialogOpen(false);}}/>
+        SpeechPublisher.addSpeech(
+            title,
+            text
+        );
 
-      {/* <BottomSheet isOpen={isSheetOpen} onClose={() => setIsSheetOpen(false)}>
-        <QueueList items={queueItems} onClose={() => setIsSheetOpen(false)} onDelete={handleDeleteQueueItem}/>
-      </BottomSheet> */}
-    </div>
-  );
+        setIsAddDialogOpen(false);
+    };
+
+  const handleSpeechSelect = (speech: Speech) => {
+    setSelectedSpeech(speech);
+  };
+
+
+    return (
+        <div className="conversation-page-wrapper">
+
+            <PageHeader>
+              <BackButton position="top-left-fixed" onClick={() => navigate("/")}/>
+              <SettingsButton position="top-right-fixed" onClick={() => navigate("/settings")}/>
+            </PageHeader>
+
+
+            {selectedSpeech && (
+              <div className="selected-speech">
+                {selectedSpeech.title}
+              </div>
+            )}
+
+            <ConversationInterface isPlaying={isPlaying} onPlay={handlePlay} onPause={handlePause} onStop={handleStop}/>
+
+            <BottomBar>
+                <Button label="Add" position="bottom-left-fixed" onClick={() => setIsAddDialogOpen(true)} />
+                <Button label="Select" position="bottom-right-fixed" onClick={() => setIsSelectOpen(true)}/>
+            </BottomBar>
+
+            <AddSpeechDialog isOpen={isAddDialogOpen} onCancel={() => setIsAddDialogOpen(false)} onSave={handleSaveSpeech}/>
+
+            <BottomSheet isOpen={isSelectOpen} onClose={() => setIsSelectOpen(false)}>
+                <SpeechSelectionView onClose={() => setIsSelectOpen(false)} onSelect={handleSpeechSelect}
+/>
+            </BottomSheet>
+
+        </div>
+    );
 }
+

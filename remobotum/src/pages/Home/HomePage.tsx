@@ -51,7 +51,7 @@ export default function HomePage(): JSX.Element {
         <ButtonContainer container='button-container-vertical'  gap={20}>
           <Button label="Conversation" onClick={()=>navigate('/conversation')}/>
           <Button label="Movements" onClick={() => navigate('/movements')}/>
-          <Button label="Remote Control" onClick={() => navigate('/remote-control')}/>
+          <Button label="Remote Control" onClick={() => navigate('/remotecontrol')}/>
           <Switch isOn={value} onChange={handleFollowMeChange} label="Follow Me"/>
         </ButtonContainer>
       </div>

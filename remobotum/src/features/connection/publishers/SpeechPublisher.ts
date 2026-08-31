@@ -15,6 +15,21 @@ class SpeechPublisher {
         );
     }
 
+    updateSpeech(id: string, title: string, text: string) {
+    WebSocket.send(
+        JSON.stringify({
+            type: "speech",
+            action: "update",
+            speech: {
+                id, 
+                title,
+                text
+            }
+        })
+    );
+}
+
+
     getSpeeches() {
         WebSocket.send(
             JSON.stringify({
@@ -48,6 +63,16 @@ class SpeechPublisher {
             JSON.stringify({
                 type: "speech",
                 action: "stop"
+            })
+        );
+    }
+
+    deleteSpeech(id: string){
+        WebSocket.send(
+            JSON.stringify({
+                type: "speech",
+                action: "delete",
+                id
             })
         );
     }

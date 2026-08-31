@@ -1,6 +1,6 @@
 import { type JSX } from "react";
 import "./IconButton.css"
-import {Settings, ListFilter, ArrowBigLeft, Search, ChevronUp, ChevronDown, X, Play, Pause, Square, Mic} from "lucide-react";
+import {Settings, ListFilter, ArrowBigLeft, Search, ChevronUp, ChevronDown, X, Play, Pause, Square, Mic, Plus} from "lucide-react";
 
 
 interface IconButtonProps {
@@ -65,4 +65,9 @@ export function StopButton({position='relative', onClick, size=48, color="#3d465
 export function RecordButton({position='relative', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
 {
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <Mic size={size} color={color} strokeWidth={strokeWidth}/> </button>
+}
+
+export function PlusButton({position='relative', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
+{
+    return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <Plus size={size} color={color} strokeWidth={strokeWidth}/> </button>
 }

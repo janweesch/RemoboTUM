@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AddSpeechDialog.css";
 import { Button } from "../../atoms/Button/Button";
 
@@ -7,12 +7,22 @@ interface AddSpeechDialogProps {
   isOpen: boolean;
   onCancel: () => void;
   onSave: (title: string, text: string) => void;
+  
+  initialTitle?: string;
+  initialText?: string;
 }
 
-export default function AddSpeechDialog({isOpen, onCancel, onSave}: AddSpeechDialogProps): JSX.Element | null {
+export default function AddSpeechDialog({isOpen, onCancel, onSave, initialTitle = "", initialText = ""}: AddSpeechDialogProps): JSX.Element | null {
 
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState(initialTitle); 
+  const [text, setText] = useState(initialText);
+  
+  useEffect(() => 
+    { 
+      setTitle(initialTitle); 
+      setText(initialText); }, 
+      [initialTitle, initialText]);
+
 
   if (!isOpen) {
     return null;

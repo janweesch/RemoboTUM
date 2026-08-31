@@ -1,0 +1,25 @@
+.speech-list-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 64px;
+}
+
+.speech-list-item-left,
+.speech-list-item-right {
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speech-list-item-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
