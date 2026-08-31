@@ -14,6 +14,7 @@
 }
 
 .bottom-sheet.open {
+  bottom: var(--stop-button-size);
   transform: translateY(0);
 }
 

@@ -16,6 +16,10 @@
   --button-font-weight: 500;
   --button-text-color: var(--color-text);
   --button-cursor: pointer;
+  --bottom-spacing: 10px;
+  --stop-button-size: 48px;
+  --stop-button-text-color: white;
+  --stop-button-background: red;
   
   /* Component: Switch */
   --switch-bg-off: #ef4444;
@@ -29,7 +33,10 @@
   --switch-font-size: 16px;
   --switch-label-color: var(--color-text);
   --switch-gap: 15px;
+  
+  --bottom-bar-height: 70px;
 }
+
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {

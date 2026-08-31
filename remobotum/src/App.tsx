@@ -7,6 +7,7 @@ import RemoteControlPage from './pages/RemoteControl/RemoteControlPage';
 import connection from './features/connection/websocket/WebSocket';
 import messagerouter from './features/connection/messaging/MessageRouter';
 import { useEffect } from 'react';
+import AppLayout from './components/layouts/AppLayout/AppLayout';
 
 
 
@@ -31,12 +32,14 @@ export default function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/movements" element={<MovementsPage />} />
-      <Route path="/settings" element={<SettingsPage />} />
-      <Route path="/conversation" element={<ConversationPage/>}/>
-      <Route path="/remotecontrol" element={<RemoteControlPage/>}/>
-    </Routes>
+    <AppLayout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movements" element={<MovementsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/conversation" element={<ConversationPage/>}/>
+        <Route path="/remotecontrol" element={<RemoteControlPage/>}/>
+      </Routes>
+    </AppLayout>
   );
 }

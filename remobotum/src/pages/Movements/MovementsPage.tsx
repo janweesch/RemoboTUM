@@ -86,7 +86,7 @@ export default function MovementsPage(): JSX.Element
       <ScrollableView gap={10}> {filteredMovements.map(movement => (<Button  key={`${movement.kind}-${movement.name}`} label={movement.name} onClick={() => handleMovementClick(movement)}/>))} </ScrollableView>
       
       <BottomBar>
-        <PopUpButton onClick={()=>setIsSheetOpen(true)}/>
+        <PopUpButton position='relative' onClick={()=>setIsSheetOpen(true)}/>
       </BottomBar>
 
       <BottomSheet isOpen={isSheetOpen} onClose={() => setIsSheetOpen(false)}>

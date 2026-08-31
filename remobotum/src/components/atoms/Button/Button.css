@@ -41,3 +41,26 @@
   right: 10px;
   z-index: 999;
 }
+
+.button-bottom-center-fixed {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+}
+
+.stop-button {
+    position: fixed;
+    bottom: 0px;
+    background-color: red;
+    color: var(--stop-button-text-color);
+    background: var(--stop-button-background);
+    width: 100%;
+    height: var(--stop-button-size);
+    z-index: 2000;
+}
+
+.stop-button:hover {
+    background-color: darkred;
+}
