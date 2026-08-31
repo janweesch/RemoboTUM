@@ -28,6 +28,8 @@ class MovementPublisher {
       })
     );
 
+    console.log("Get Movement Message send to robot!")
+
 }
 }
 

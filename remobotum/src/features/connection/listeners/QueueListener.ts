@@ -1,7 +1,8 @@
 export interface QueueItem {
-queueId: string;
-movementId: number;
-name: string;
+  queueId: string;
+  movementId: number | null;
+  name: string;
+  kind: "preset" | "custom";
 }
 
 export type QueueListenerCallback = (items: QueueItem[]) => void;

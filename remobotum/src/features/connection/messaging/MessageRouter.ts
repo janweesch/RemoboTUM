@@ -25,7 +25,7 @@ class MessageRouter {
 
         case "movements":
           
-          this.movements.handle(message.actions);
+          this.movements.handle(message.items);
 
           break;
 

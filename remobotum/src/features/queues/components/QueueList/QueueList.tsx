@@ -10,8 +10,9 @@ import SearchBar from "../../../../components/molecules/SearchBar/SearchBar";
 
 export interface QueueItem {
   queueId: string;
-  movementId: number;
+  movementId: number | null;
   name: string;
+  kind: "preset" | "custom";
 }
 
 interface QueueListProps {

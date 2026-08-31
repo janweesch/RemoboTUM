@@ -1,14 +1,16 @@
-const ROBOT_WS_URL = "ws://192.168.123.164:8000";
+
+const ROBOT_WS_URL: string = "ws://192.168.123.164:8000";
 
 type MessageHandler = (message: string) => void;
 
+
 class Connection {
 
-  private socket: WebSocket | null = null;
+  private socket: globalThis.WebSocket | null = null;
 
   private reconnectTimer: number | null = null;
 
-  private shouldReconnect = true;
+  private shouldReconnect: boolean = true;
 
   private messageHandler: MessageHandler | null = null;
 
@@ -17,9 +19,23 @@ class Connection {
   // MESSAGE HANDLER
   // --------------------------------------------------
 
-  setMessageHandler(handler: MessageHandler) {
+  setMessageHandler(handler: MessageHandler): void {
 
     this.messageHandler = handler;
+
+  }
+
+
+  // --------------------------------------------------
+  // CONNECTION STATUS
+  // --------------------------------------------------
+
+  isConnected(): boolean {
+
+    return (
+      this.socket !== null &&
+      this.socket.readyState === globalThis.WebSocket.OPEN
+    );
 
   }
 
@@ -28,32 +44,44 @@ class Connection {
   // CONNECT
   // --------------------------------------------------
 
-  connect() {
+  connect(): void {
 
     if (
       this.socket &&
       (
-        this.socket.readyState === WebSocket.OPEN ||
-        this.socket.readyState === WebSocket.CONNECTING
+        this.socket.readyState === globalThis.WebSocket.OPEN ||
+        this.socket.readyState === globalThis.WebSocket.CONNECTING
       )
     ) {
+
       return;
+
     }
+
 
     console.log("Trying to connect to robot...");
 
     this.shouldReconnect = true;
 
-    this.socket = new WebSocket(ROBOT_WS_URL);
+    this.socket = new globalThis.WebSocket(
+      ROBOT_WS_URL
+    );
 
 
-    this.socket.onopen = () => {
+    // --------------------------------------------------
+    // CONNECTION SUCCESSFUL
+    // --------------------------------------------------
+
+    this.socket.onopen = (): void => {
 
       console.log("Connected to robot");
 
+
       if (this.reconnectTimer !== null) {
 
-        window.clearTimeout(this.reconnectTimer);
+        window.clearTimeout(
+          this.reconnectTimer
+        );
 
         this.reconnectTimer = null;
 
@@ -66,14 +94,19 @@ class Connection {
     // MESSAGE
     // --------------------------------------------------
 
-    this.socket.onmessage = (event) => {
+    this.socket.onmessage = (
+      event: MessageEvent
+    ): void => {
 
       console.log(
         "Received from robot:",
         event.data
       );
 
-      this.messageHandler?.(event.data);
+
+      this.messageHandler?.(
+        event.data
+      );
 
     };
 
@@ -82,7 +115,9 @@ class Connection {
     // ERROR
     // --------------------------------------------------
 
-    this.socket.onerror = (error) => {
+    this.socket.onerror = (
+      error: Event
+    ): void => {
 
       console.error(
         "WebSocket error:",
@@ -96,11 +131,15 @@ class Connection {
     // CLOSE
     // --------------------------------------------------
 
-    this.socket.onclose = () => {
+    this.socket.onclose = (): void => {
 
-      console.log("Disconnected from robot");
+      console.log(
+        "Disconnected from robot"
+      );
+
 
       this.socket = null;
+
 
       if (this.shouldReconnect) {
 
@@ -117,7 +156,7 @@ class Connection {
   // RECONNECT
   // --------------------------------------------------
 
-  private scheduleReconnect() {
+  private scheduleReconnect(): void {
 
     if (this.reconnectTimer !== null) {
 
@@ -125,17 +164,22 @@ class Connection {
 
     }
 
+
     console.log(
       "Trying to reconnect in 3 seconds..."
     );
 
-    this.reconnectTimer = window.setTimeout(() => {
 
-      this.reconnectTimer = null;
+    this.reconnectTimer = window.setTimeout(
+      (): void => {
 
-      this.connect();
+        this.reconnectTimer = null;
 
-    }, 3000);
+        this.connect();
+
+      },
+      3000
+    );
 
   }
 
@@ -144,27 +188,28 @@ class Connection {
   // SEND
   // --------------------------------------------------
 
-  send(message: string) {
+  send(message: string): void {
 
-    if (
-      this.socket &&
-      this.socket.readyState === WebSocket.OPEN
-    ) {
-
-      console.log(
-        "Sending to robot:",
-        message
-      );
-
-      this.socket.send(message);
-
-    } else {
+    if (!this.isConnected()) {
 
       console.error(
         "WebSocket is not connected"
       );
 
+      return;
+
     }
+
+
+    console.log(
+      "Sending to robot:",
+      message
+    );
+
+
+    this.socket!.send(
+      message
+    );
 
   }
 
@@ -173,11 +218,12 @@ class Connection {
   // DISCONNECT
   // --------------------------------------------------
 
-  disconnect() {
+  disconnect(): void {
 
     console.log(
       "Disconnecting from robot..."
     );
+
 
     this.shouldReconnect = false;
 
@@ -207,3 +253,4 @@ class Connection {
 
 
 export default new Connection();
+
