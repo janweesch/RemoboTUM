@@ -7,7 +7,6 @@ import { type Speech } from "../../../features/connection/listeners/SpeechListen
 import SpeechPublisher from "../../../features/connection/publishers/SpeechPublisher";
 import MessageRouter from "../../../features/connection/messaging/MessageRouter";
 
-import "./SpeechSelectionView.css";
 
 interface SpeechSelectionViewProps {
     onClose: () => void;
