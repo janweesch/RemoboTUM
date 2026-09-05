@@ -54,11 +54,5 @@ export default function SettingsPage(): JSX.Element
 
             <ScrollableView gap={10}> {SETTINGS.map(setting => (<Button key={setting.id} label={setting.name} onClick={() => handleSettingClick(setting.name)}/>))} </ScrollableView>
         </div>
-
-
-
-
-
-
     );
 }

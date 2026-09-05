@@ -1,12 +1,14 @@
 import { type JSX } from "react";
-import {CancelButton, PlayButton} from "../../atoms/IconButton/IconButton";
+import {
+    CancelButton,
+    EditButton
+} from "../../atoms/IconButton/IconButton";
+
 import "./SpeechListItem.css";
-import { Button } from "../../atoms/Button/Button";
 
 interface SpeechListItemProps {
     id: string;
     title: string;
-    onSelect: (id: string) => void;
     onEdit: (id: string) => void;
     onDelete: (id: string) => void;
 }
@@ -14,17 +16,15 @@ interface SpeechListItemProps {
 export default function SpeechListItem({
     id,
     title,
-    onSelect,
     onEdit,
     onDelete
 }: SpeechListItemProps): JSX.Element {
 
-    return ( 
-    <div className="speech-list-item"> 
-        <PlayButton position="relative" onClick={() => onSelect(id)} /> 
-        <Button label={title} position="relative" onClick={() => onEdit(id)} />
-        <CancelButton position="relative" onClick={() => onDelete(id)} /> 
-    </div> 
-    ); 
+    return (
+        <div className="speech-list-item">
+            <EditButton position="relative" onClick={() => onEdit(id)}/>
+            <span className="speech-title"> {title} </span>
+            <CancelButton position="relative" onClick={() => onDelete(id)}/>
+        </div>
+    );
 }
-

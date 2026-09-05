@@ -9,6 +9,7 @@ import messagerouter from './features/connection/messaging/MessageRouter';
 import { useEffect } from 'react';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
 import ConversationSettingPage from './pages/Settings/Category/Conversation/ConversationSettingPage';
+import SpeechesPage from './pages/Settings/Category/Conversation/SpeechesPage/SpeechesPage';
 
 
 
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/conversation" element={<ConversationPage/>}/>
         <Route path="/remotecontrol" element={<RemoteControlPage/>}/>
         <Route path="/ConversationSettingPage" element={<ConversationSettingPage/>}/>
+        <Route path="/SpeechesPage" element={<SpeechesPage/>}/>
       </Routes>
     </AppLayout>
   );

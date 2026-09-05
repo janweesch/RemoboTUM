@@ -18,7 +18,7 @@ export default function ConversationSettingsPage(): JSX.Element {
             </PageHeader>
 
             <main className="conversation-settings-content">
-                <Button label="Speeches" onClick={() => navigate("/conversation/settings/speeches")}/>
+                <Button label="Speeches" onClick={() => navigate("/SpeechesPage")}/>
                 <Button label="Speaker Volume" onClick={() => navigate("/conversation/settings/volume")}/> 
             </main>
         </div>
