@@ -32,12 +32,12 @@ export function SearchButton({position='top-middle-fixed', onClick, size=48, col
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <Search size={size} color={color} strokeWidth={strokeWidth}/> </button>
 } 
 
-export function PopUpButton({position='bottom-middle-fixed', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
+export function PopUpButton({position='relative', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
 {
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <ChevronUp size={size} color={color} strokeWidth={strokeWidth}/> </button>
 }
 
-export function PopDownButton({position='bottom-middle-fixed', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
+export function PopDownButton({position='relative', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
 {
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <ChevronDown size={size} color={color} strokeWidth={strokeWidth}/> </button>
 }  
