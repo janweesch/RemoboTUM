@@ -49,6 +49,20 @@ export default function HomePage(): JSX.Element {
 
       <div className="home-page-content">
         <ButtonContainer container='button-container-vertical'  gap={20}>
+          <ButtonContainer container="button-container-horizontal" gap={20}>
+          <Button label="Damping" onClick={()=>navigate('/conversation')}/>
+          <Button label="Locked Standing" onClick={() => navigate('/movements')}/>
+          <Button label="Regular Mode" onClick={() => navigate('/remotecontrol')}/>
+          </ButtonContainer>
+
+          <ButtonContainer container="button-container-horizontal" gap={20}>
+          <Button label="Run" onClick={()=>navigate('/conversation')}/>
+          <Button label="Walk" onClick={() => navigate('/movements')}/>
+          <Button label="Lie -> Stand" onClick={() => navigate('/remotecontrol')}/>
+          </ButtonContainer>
+        </ButtonContainer>
+
+        <ButtonContainer container='button-container-vertical'  gap={20}>
           <Button label="Conversation" onClick={()=>navigate('/conversation')}/>
           <Button label="Movements" onClick={() => navigate('/movements')}/>
           <Button label="Remote Control" onClick={() => navigate('/remotecontrol')}/>
