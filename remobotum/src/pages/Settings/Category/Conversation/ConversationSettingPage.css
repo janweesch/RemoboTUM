@@ -1,0 +1,58 @@
+.conversation-settings-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.conversation-settings-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.settings-item {
+    width: 100%;
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 20px;
+
+    background-color: var(--color-background);
+    border: var(--button-border-width) solid var(--button-border-color);
+    border-radius: 12px;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.settings-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-item-text h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.settings-item-text p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.settings-item-arrow {
+    font-size: 32px;
+    line-height: 1;
+    opacity: 0.5;
+}

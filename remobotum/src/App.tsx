@@ -8,6 +8,7 @@ import connection from './features/connection/websocket/WebSocket';
 import messagerouter from './features/connection/messaging/MessageRouter';
 import { useEffect } from 'react';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
+import ConversationSettingPage from './pages/Settings/Category/Conversation/ConversationSettingPage';
 
 
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/conversation" element={<ConversationPage/>}/>
         <Route path="/remotecontrol" element={<RemoteControlPage/>}/>
+        <Route path="/ConversationSettingPage" element={<ConversationSettingPage/>}/>
       </Routes>
     </AppLayout>
   );

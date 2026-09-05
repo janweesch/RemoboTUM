@@ -20,9 +20,28 @@ const SETTINGS: Setting[] = [
 
 export default function SettingsPage(): JSX.Element
 {
-      const handleMovementClick = (setting: string) => {
-  console.log('Selected:', setting);
-  };
+    const handleSettingClick = (setting: string) => {
+        switch (setting) {
+            case "General":
+                navigate("/settings/general");
+                break;
+
+            case "Conversation":
+                navigate("/ConversationSettingPage");
+                break;
+
+            case "Movements":
+                navigate("/movements/settings");
+                break;
+
+            case "Follow Me":
+                navigate("/settings/follow-me");
+                break;
+
+            default:
+                console.log("Unknown setting:", setting);
+        }
+    };
 
   const navigate = useNavigate();
 
@@ -33,7 +52,7 @@ export default function SettingsPage(): JSX.Element
                 <BackButton onClick={()=>navigate('/')}/>
             </PageHeader>
 
-            <ScrollableView gap={10}> {SETTINGS.map(setting => (<Button key={setting.id} label={setting.name} onClick={() => handleMovementClick(setting.name)}/>))} </ScrollableView>
+            <ScrollableView gap={10}> {SETTINGS.map(setting => (<Button key={setting.id} label={setting.name} onClick={() => handleSettingClick(setting.name)}/>))} </ScrollableView>
         </div>
 
 
