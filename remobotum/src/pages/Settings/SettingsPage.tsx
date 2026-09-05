@@ -12,10 +12,8 @@ interface Setting {
 }
 
 const SETTINGS: Setting[] = [
-  { id: 1, name: 'General'},
-  { id: 2, name: 'Conversation'},
-  { id: 3, name: 'Movements'},
-  { id: 4, name: 'Follow Me'},
+  { id: 1, name: 'Conversation'},
+  { id: 2, name: 'Follow Me'},
 ];
 
 export default function SettingsPage(): JSX.Element
@@ -35,7 +33,7 @@ export default function SettingsPage(): JSX.Element
                 break;
 
             case "Follow Me":
-                navigate("/settings/follow-me");
+                navigate("/FollowMeSettingPage");
                 break;
 
             default:

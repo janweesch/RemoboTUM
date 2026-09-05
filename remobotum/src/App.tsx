@@ -11,6 +11,7 @@ import AppLayout from './components/layouts/AppLayout/AppLayout';
 import ConversationSettingPage from './pages/Settings/Category/Conversation/ConversationSettingPage';
 import SpeechesPage from './pages/Settings/Category/Conversation/SpeechesPage/SpeechesPage';
 import SpeakerVolumePage from './pages/Settings/Category/Conversation/SpeakerVolumePage/SpeakerVolumePage';
+import FollowMeSettingPage from './pages/Settings/Category/FollowMe/FollowMeSettingPage';
 
 
 
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/ConversationSettingPage" element={<ConversationSettingPage/>}/>
         <Route path="/SpeechesPage" element={<SpeechesPage/>}/>
         <Route path="/SpeakerVolumePage" element={<SpeakerVolumePage/>}/>
+        <Route path="/FollowMeSettingPage" element={<FollowMeSettingPage/>}/>
       </Routes>
     </AppLayout>
   );

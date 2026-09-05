@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import PageHeader from "../../../../components/molecules/PageHeader/PageHeader";
 import { BackButton } from "../../../../components/atoms/IconButton/IconButton";
-import SettingSlider from "../../../../components/molecules/SettingsSlider/SettingsSlider";
+import SettingSlider from "../../../../components/molecules/SettingsSlider/SettingSlider";
 
-import "./FollowMeSettingsPage.css";
+import "./FollowMeSettingPage.css";
 
-export default function FollowMeSettingsPage(): JSX.Element {
+export default function FollowMeSettingPage(): JSX.Element {
 
     const navigate = useNavigate();
 
