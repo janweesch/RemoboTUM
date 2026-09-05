@@ -3,6 +3,7 @@ import { type JSX, useState } from "react";
 
 import {
     BackButton,
+    PopUpButton,
     SettingsButton
 } from "../../components/atoms/IconButton/IconButton";
 
@@ -90,16 +91,16 @@ export default function ConversationPage(): JSX.Element {
 
             <ConversationInterface isPlaying={isPlaying} onPlay={handlePlay} onPause={handlePause} onStop={handleStop}/>
 
-            <BottomBar>
-                <Button label="Add" position="bottom-left-fixed" onClick={() => setIsAddDialogOpen(true)} />
-                <Button label="Select" position="bottom-right-fixed" onClick={() => setIsSelectOpen(true)}/>
+            <BottomBar>            
+              <PopUpButton onClick={() => setIsSelectOpen(true)}/>
+              {/* <Button label="Add" position="bottom-left-fixed" onClick={() => setIsAddDialogOpen(true)} />
+              <Button label="Select" position="bottom-right-fixed" onClick={() => setIsSelectOpen(true)}/> */}
             </BottomBar>
 
             <AddSpeechDialog isOpen={isAddDialogOpen} onCancel={() => setIsAddDialogOpen(false)} onSave={handleSaveSpeech}/>
 
             <BottomSheet isOpen={isSelectOpen} onClose={() => setIsSelectOpen(false)}>
-                <SpeechSelectionView onClose={() => setIsSelectOpen(false)} onSelect={handleSpeechSelect}
-/>
+                <SpeechSelectionView onClose={() => setIsSelectOpen(false)} onSelect={handleSpeechSelect}/>
             </BottomSheet>
 
         </div>
