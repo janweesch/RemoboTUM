@@ -29,7 +29,7 @@ export default function RemoteControlPage() {
         <div className="remotecontrol-page-wrapper">
 
             <PageHeader>
-                <BackButton onClick={() => navigate("/")} />
+                <BackButton onClick={() => navigate(-1)} />
             </PageHeader>
 
             <div className="joysticks-container">

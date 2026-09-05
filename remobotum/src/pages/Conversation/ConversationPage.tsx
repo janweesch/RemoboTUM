@@ -78,7 +78,7 @@ export default function ConversationPage(): JSX.Element {
         <div className="conversation-page-wrapper">
 
             <PageHeader>
-              <BackButton position="top-left-fixed" onClick={() => navigate("/")}/>
+              <BackButton position="top-left-fixed" onClick={() => navigate(-1)}/>
               <SettingsButton position="top-right-fixed" onClick={() => navigate("/settings")}/>
             </PageHeader>
 

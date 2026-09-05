@@ -14,7 +14,7 @@ export default function ConversationSettingsPage(): JSX.Element {
         <div className="conversation-settings-page-wrapper">
 
             <PageHeader>
-                <BackButton position="top-left-fixed" onClick={() => navigate("/")}/>
+                <BackButton position="top-left-fixed" onClick={() => navigate(-1)}/>
             </PageHeader>
 
             <main className="conversation-settings-content">

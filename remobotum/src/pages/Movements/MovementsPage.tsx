@@ -73,7 +73,7 @@ export default function MovementsPage(): JSX.Element
         />
       ) : (
         <PageHeader>
-          <BackButton onClick={() => navigate('/')} />
+          <BackButton onClick={() => navigate(-1)} />
           
           <SearchButton
             onClick={() => setIsSearching(true)}

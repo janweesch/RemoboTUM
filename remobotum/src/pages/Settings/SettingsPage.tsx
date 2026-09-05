@@ -49,7 +49,7 @@ export default function SettingsPage(): JSX.Element
         <div className="settings-page-wrapper">
         
             <PageHeader>
-                <BackButton onClick={()=>navigate('/')}/>
+                <BackButton onClick={()=>navigate(-1)}/>
             </PageHeader>
 
             <ScrollableView gap={10}> {SETTINGS.map(setting => (<Button key={setting.id} label={setting.name} onClick={() => handleSettingClick(setting.name)}/>))} </ScrollableView>
