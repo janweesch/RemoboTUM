@@ -64,3 +64,21 @@
 .stop-button:hover {
     background-color: darkred;
 }
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .button-top-right-fixed {
+    right: calc(10px + env(safe-area-inset-right, 0px));
+  }
+
+  .button-bottom-left-fixed {
+    left: calc(10px + env(safe-area-inset-left, 0px));
+  }
+
+  .button-bottom-right-fixed {
+    right: calc(10px + env(safe-area-inset-right, 0px));
+  }
+
+  .stop-button {
+    font-size: 14px;
+  }
+}

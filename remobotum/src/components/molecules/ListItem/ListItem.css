@@ -25,3 +25,9 @@
   color: var(--button-text-colour);
 }
 
+@media (orientation: landscape) and (max-height: 600px) {
+  .list-item {
+    padding: 8px 14px;
+  }
+}
+

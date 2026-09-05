@@ -55,6 +55,21 @@
     --switch-label-color: var(--color-text);
   }
 }
+/* Mobile Landscape Mode */
+@media (orientation: landscape) and (max-height: 600px) {
+  :root {
+    --button-padding: 8px 14px;
+    --button-font-size: 14px;
+    --stop-button-size: 40px;
+    --bottom-bar-height: 52px;
+
+    --switch-width: 76px;
+    --switch-height: 38px;
+    --switch-slider-size: 34px;
+    --switch-font-size: 14px;
+    --switch-gap: 10px;
+  }
+}
 
 #root {
   width: 1126px;

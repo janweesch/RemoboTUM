@@ -26,3 +26,13 @@
     transform: scaleY(1);
   }
 }
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .voice-playback {
+    height: 36px;
+  }
+
+  .voice-bar {
+    height: 22px;
+  }
+}

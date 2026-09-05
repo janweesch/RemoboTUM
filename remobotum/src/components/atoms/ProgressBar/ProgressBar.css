@@ -35,3 +35,10 @@
   position: relative;
   z-index: 999;
 }
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .progress-bar-top-left-fixed {
+    top: 10px;
+    left: calc(10px + env(safe-area-inset-left, 0px));
+  }
+}

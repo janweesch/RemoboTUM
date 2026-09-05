@@ -66,3 +66,25 @@
   transform: translateX(-50%) scale(0.95);
 }
 
+@media (orientation: landscape) and (max-height: 600px) {
+  .icon-button-top-right-fixed,
+  .icon-button-top-right-sticky {
+    top: 6px;
+    right: calc(10px + env(safe-area-inset-right, 0px));
+  }
+
+  .icon-button-top-left-fixed {
+    top: 6px;
+    left: calc(10px + env(safe-area-inset-left, 0px));
+  }
+
+  .icon-button-top-middle-fixed {
+    top: 6px;
+  }
+
+  .icon-button svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+

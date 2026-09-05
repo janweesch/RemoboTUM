@@ -7,13 +7,11 @@ import {
     SettingsButton
 } from "../../components/atoms/IconButton/IconButton";
 
-import { Button } from "../../components/atoms/Button/Button";
 import PageHeader from "../../components/molecules/PageHeader/PageHeader";
 import BottomBar from "../../components/molecules/BottomBar/BottomBar";
 
 import BottomSheet from "../../components/organisms/BottomSheet/BottomSheet";
 import ConversationInterface from "../../components/organisms/ConversationInterface/ConversationInterface";
-import AddSpeechDialog from "../../components/organisms/AddSpeechDialog/AddSpeechDialog";
 import SpeechSelectionView from "../../components/organisms/SpeechSelectionView/SpeechSelectionView";
 
 import { useNavigate } from "react-router-dom";
@@ -25,85 +23,129 @@ import type { Speech } from "../../features/connection/listeners/SpeechListener"
 export default function ConversationPage(): JSX.Element {
 
     const navigate = useNavigate();
-    const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
     const [isPlaying, setIsPlaying] = useState(false);
 
     const [selectedSpeech, setSelectedSpeech] = useState<Speech | null>(null);
+
     const [isSelectOpen, setIsSelectOpen] = useState(false);
+
+
+    // --------------------------------------------------
+    // PLAY
+    // --------------------------------------------------
 
     const handlePlay = () => {
 
-    if (!selectedSpeech) {
-        return;
-    }
+        if (!selectedSpeech) {
+            return;
+        }
 
-    SpeechPublisher.playSpeech(selectedSpeech.id);
-    setIsPlaying(true);
-  };
-
-    const handlePause = () => {
-        SpeechPublisher.pauseSpeech();
-        setIsPlaying(false);
-  };
-
-    const handleStop = () => {
-        SpeechPublisher.stopSpeech();
-        setIsPlaying(false);
-  };
-
-    // --------------------------------------------------
-    // ADD SPEECH
-    // --------------------------------------------------
-
-    const handleSaveSpeech = (
-        title: string,
-        text: string
-    ) => {
-
-        SpeechPublisher.addSpeech(
-            title,
-            text
-        );
-
-        setIsAddDialogOpen(false);
+        SpeechPublisher.playSpeech(selectedSpeech.id);
+        setIsPlaying(true);
     };
 
-  const handleSpeechSelect = (speech: Speech) => {
-    setSelectedSpeech(speech);
-  };
+
+    // --------------------------------------------------
+    // PAUSE
+    // --------------------------------------------------
+
+    const handlePause = () => {
+
+        SpeechPublisher.pauseSpeech();
+        setIsPlaying(false);
+    };
+
+
+    // --------------------------------------------------
+    // STOP
+    // --------------------------------------------------
+
+    const handleStop = () => {
+
+        SpeechPublisher.stopSpeech();
+        setIsPlaying(false);
+    };
+
+
+    // --------------------------------------------------
+    // SELECT SPEECH
+    // --------------------------------------------------
+
+    const handleSpeechSelect = (speech: Speech) => {
+
+        // Remember selected speech
+        setSelectedSpeech(speech);
+
+        // Immediately play selected speech
+        SpeechPublisher.playSpeech(speech.id);
+
+        // Update play/pause interface
+        setIsPlaying(true);
+
+        // Close bottom sheet
+        setIsSelectOpen(false);
+    };
 
 
     return (
         <div className="conversation-page-wrapper">
 
             <PageHeader>
-              <BackButton position="top-left-fixed" onClick={() => navigate(-1)}/>
-              <SettingsButton position="top-right-fixed" onClick={() => navigate("/settings")}/>
+
+                <BackButton
+                    position="top-left-fixed"
+                    onClick={() => navigate(-1)}
+                />
+
+                <SettingsButton
+                    position="top-right-fixed"
+                    onClick={() => navigate("/settings")}
+                />
+
             </PageHeader>
 
 
+            {/* Selected speech title */}
             {selectedSpeech && (
-              <div className="selected-speech">
-                {selectedSpeech.title}
-              </div>
+                <div className="selected-speech">
+                    {selectedSpeech.title}
+                </div>
             )}
 
-            <ConversationInterface isPlaying={isPlaying} onPlay={handlePlay} onPause={handlePause} onStop={handleStop}/>
 
-            <BottomBar>            
-              <PopUpButton onClick={() => setIsSelectOpen(true)}/>
-              {/* <Button label="Add" position="bottom-left-fixed" onClick={() => setIsAddDialogOpen(true)} />
-              <Button label="Select" position="bottom-right-fixed" onClick={() => setIsSelectOpen(true)}/> */}
+            {/* Play / Pause / Stop controls */}
+            <ConversationInterface
+                isPlaying={isPlaying}
+                onPlay={handlePlay}
+                onPause={handlePause}
+                onStop={handleStop}
+            />
+
+
+            {/* Bottom bar */}
+            <BottomBar>
+
+                <PopUpButton
+                    onClick={() => setIsSelectOpen(true)}
+                />
+
             </BottomBar>
 
-            <AddSpeechDialog isOpen={isAddDialogOpen} onCancel={() => setIsAddDialogOpen(false)} onSave={handleSaveSpeech}/>
 
-            <BottomSheet isOpen={isSelectOpen} onClose={() => setIsSelectOpen(false)}>
-                <SpeechSelectionView onClose={() => setIsSelectOpen(false)} onSelect={handleSpeechSelect}/>
+            {/* Speech selection bottom sheet */}
+            <BottomSheet
+                isOpen={isSelectOpen}
+                onClose={() => setIsSelectOpen(false)}
+            >
+
+                <SpeechSelectionView
+                    onClose={() => setIsSelectOpen(false)}
+                    onSelect={handleSpeechSelect}
+                />
+
             </BottomSheet>
 
         </div>
     );
 }
-

@@ -1,30 +1,31 @@
 import { type JSX, useEffect, useState } from "react";
 
-import SpeechListItem from "../../molecules/SpeechListItem/SpeechListItem";
-import AddSpeechDialog from "../AddSpeechDialog/AddSpeechDialog";
+import ScrollableView from "../../molecules/ScrollableButtonList/ScrollableView";
+import BottomBar from "../../molecules/BottomBar/BottomBar";
+
+import { Button } from "../../atoms/Button/Button";
+import { PopDownButton } from "../../atoms/IconButton/IconButton";
 
 import { type Speech } from "../../../features/connection/listeners/SpeechListener";
 import SpeechPublisher from "../../../features/connection/publishers/SpeechPublisher";
 import MessageRouter from "../../../features/connection/messaging/MessageRouter";
-
 
 interface SpeechSelectionViewProps {
     onClose: () => void;
     onSelect: (speech: Speech) => void;
 }
 
-export default function SpeechSelectionView({onClose, onSelect}: SpeechSelectionViewProps): JSX.Element {
+export default function SpeechSelectionView({
+    onClose,
+    onSelect
+}: SpeechSelectionViewProps): JSX.Element {
 
     const [speeches, setSpeeches] = useState<Speech[]>([]);
-    const [editingSpeech, setEditingSpeech] = useState<Speech | null>(null);
 
-    /*
-     * Get speeches from the robot
-     */
     useEffect(() => {
 
-        MessageRouter.speeches.onSpeeches((actions) => {
-            setSpeeches(actions);
+        MessageRouter.speeches.onSpeeches((speeches) => {
+            setSpeeches(speeches);
         });
 
         SpeechPublisher.getSpeeches();
@@ -35,88 +36,38 @@ export default function SpeechSelectionView({onClose, onSelect}: SpeechSelection
 
     }, []);
 
-    /*
-     * Play / select speech
-     */
-    const handleSelect = (id: string) => {
-
-    const speech = speeches.find(
-        speech => speech.id === id
-    );
-
-    if (!speech) {
-        return;
-    }
-
-    onSelect(speech);
-    onClose();
-    };
-
-    /*
-     * Open speech in edit dialog
-     */
-    const handleEdit = (id: string) => {
-        const speech = speeches.find(
-            speech => speech.id === id
-        );
-        if (!speech) {
-            return;
-        }
-        setEditingSpeech(speech);
-    };
-
-
-    /*
-     * Delete speech
-     */
-    const handleDelete = (id: string) => {
-        console.log("Deleting speech:", id);
-        SpeechPublisher.deleteSpeech(id);
-    };
-
-
-    /*
-     * Save edited speech
-     */
-    const handleSave = (title: string, text: string) => {
-
-        if (!editingSpeech) {
-            return;
-        }
-        SpeechPublisher.updateSpeech(
-            editingSpeech.id,
-            title,
-            text
-        );
-        setEditingSpeech(null);
+    const handleSelect = (speech: Speech) => {
+        onSelect(speech);
+        onClose();
     };
 
     return (
         <div className="speech-selection-view">
 
-            <div className="speech-list">
+            <ScrollableView gap={10}>
 
                 {speeches.map((speech) => (
 
-                    <SpeechListItem
+                    <Button
                         key={speech.id}
-                        id={speech.id}
-                        title={speech.title}
-                        onSelect={handleSelect}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
+                        label={speech.title}
+                        position="relative"
+                        onClick={() => handleSelect(speech)}
                     />
 
                 ))}
 
-            </div>
-            <AddSpeechDialog
-                isOpen={editingSpeech !== null}
-                initialTitle={editingSpeech?.title ?? ""}
-                initialText={editingSpeech?.text ?? ""}
-                onCancel={() => {setEditingSpeech(null);}}
-                onSave={handleSave}/>
+            </ScrollableView>
+
+            <BottomBar>
+
+                <PopDownButton
+                    position="relative"
+                    onClick={onClose}
+                />
+
+            </BottomBar>
+
         </div>
     );
 }
-
