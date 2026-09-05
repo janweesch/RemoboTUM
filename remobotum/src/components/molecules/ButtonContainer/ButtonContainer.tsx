@@ -2,7 +2,7 @@ import type { JSX, ReactNode } from "react";
 import "./ButtonContainer.css";
 
 interface ButtonContainerProps {
-    container: 'button-container-vertical' | 'button_container-horizontal';
+    container: 'button-container-vertical' | 'button-container-horizontal';
     children: ReactNode;
     gap?: number;
 }
