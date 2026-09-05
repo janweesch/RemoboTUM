@@ -73,13 +73,8 @@ export default function MovementsPage(): JSX.Element
         />
       ) : (
         <PageHeader>
-          <BackButton onClick={() => navigate(-1)} />
-          
-          <SearchButton
-            onClick={() => setIsSearching(true)}
-          />
-
-          <FilterButton />
+          <BackButton onClick={() => navigate(-1)} />          
+          <SearchButton onClick={() => setIsSearching(true)}/>
         </PageHeader>
       )}
       

@@ -1,0 +1,35 @@
+.setting-slider {
+    width: 100%;
+    max-width: 600px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.setting-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-slider-label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.setting-slider-value {
+    font-size: 18px;
+}
+
+.setting-slider-input {
+    width: 100%;
+    cursor: pointer;
+}
+
+.setting-slider-range {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 14px;
+}

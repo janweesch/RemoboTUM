@@ -27,7 +27,7 @@ export function BackButton({position='top-left-fixed', onClick, size=48, color="
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <ArrowBigLeft size={size} color={color} strokeWidth={strokeWidth}/> </button>
 }
 
-export function SearchButton({position='top-middle-fixed', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
+export function SearchButton({position='top-right-fixed', onClick, size=48, color="#3d4651", strokeWidth=2 }: IconButtonProps): JSX.Element
 {
     return <button className={`icon-button icon-button-${position}`} onClick={onClick}> <Search size={size} color={color} strokeWidth={strokeWidth}/> </button>
 } 

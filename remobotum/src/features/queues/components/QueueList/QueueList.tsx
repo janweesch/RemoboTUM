@@ -41,8 +41,7 @@ export default function QueueList({items, onClose, onDelete}: QueueListProps): J
               />
             ) : (
               <PageHeader>
-                <SearchButton position="top-left-fixed" onClick={() => setIsSearching(true)}/>
-                <FilterButton />
+                <SearchButton position="top-middle-fixed" onClick={() => setIsSearching(true)}/>
               </PageHeader>
             )}
 

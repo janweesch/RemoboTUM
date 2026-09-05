@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import AppLayout from './components/layouts/AppLayout/AppLayout';
 import ConversationSettingPage from './pages/Settings/Category/Conversation/ConversationSettingPage';
 import SpeechesPage from './pages/Settings/Category/Conversation/SpeechesPage/SpeechesPage';
+import SpeakerVolumePage from './pages/Settings/Category/Conversation/SpeakerVolumePage/SpeakerVolumePage';
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/remotecontrol" element={<RemoteControlPage/>}/>
         <Route path="/ConversationSettingPage" element={<ConversationSettingPage/>}/>
         <Route path="/SpeechesPage" element={<SpeechesPage/>}/>
+        <Route path="/SpeakerVolumePage" element={<SpeakerVolumePage/>}/>
       </Routes>
     </AppLayout>
   );

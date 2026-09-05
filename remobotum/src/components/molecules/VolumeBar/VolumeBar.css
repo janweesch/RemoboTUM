@@ -1,0 +1,26 @@
+.volume-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
+.volume-icon {
+    font-size: 28px;
+    width: 40px;
+    text-align: center;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 8px;
+    cursor: pointer;
+}
+
+.volume-value {
+    width: 45px;
+    font-size: 18px;
+    text-align: right;
+}
