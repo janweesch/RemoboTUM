@@ -11,17 +11,11 @@ interface JoystickProps {
     onRelease?: () => void;
 }
 
-export default function Joystick({
-    onMove,
-    onRelease,
-}: JoystickProps) {
+export default function Joystick({onMove, onRelease,}: JoystickProps) {
 
     const joystickRef = useRef<HTMLDivElement>(null);
 
-    const [position, setPosition] = useState<JoystickValue>({
-        x: 0,
-        y: 0,
-    });
+    const [position, setPosition] = useState<JoystickValue>({x: 0, y: 0,});
 
     const handlePointerMove = (
         event: React.PointerEvent<HTMLDivElement>
